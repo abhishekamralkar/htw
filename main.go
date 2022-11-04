@@ -10,15 +10,10 @@ import (
 	"text/template"
 )
 
-const weatherTemplate = `Current weather in {{.Name}}:
-    Now:         {{.Main.FeelsLike}}
-    High:        {{.Main.Max}}
-    Low:         {{.Main.Min}}
-`
-
 type data struct {
 	Coord    coord    `json:"coord"`
 	Main     mainData `json:"main"`
+	Sys      sys      `json:"sys"`
 	Timezone int
 	Name     string
 }
@@ -39,14 +34,29 @@ type mainData struct {
 	GroundLevel float64 `json:"grnd_leve"`
 }
 
+type sys struct {
+	Country string `json:"country"`
+	Sunrise int    `json:"sunrise"`
+	Sunset  int    `json:"sunset"`
+}
+
 func main() {
 	var apiKey = os.Getenv("OWM_API_KEY")
 
 	city := flag.String("city", "Pune", "Enter the city name.")
-	units := flag.String("units", "kelvin", "Supports Kelvin, Celcius(metric), Fahrenheit(standard)")
+	units := flag.String("units", "kelvin", "Supports Kelvin(standard), Celcius(metric), Fahrenheit(imperial)")
 
 	flag.Parse()
 	url := "https://api.openweathermap.org/data/2.5/weather?q=" + *city + "&appid=" + apiKey + "&units=" + *units
+
+	const weatherTemplate = `Current weather in {{.Name}}, {{.Sys.Country}}:
+    Now:         {{.Main.FeelsLike}} 
+    High:        {{.Main.Max}}
+    Low:         {{.Main.Min}}
+    Pressure:    {{.Main.Pressure}}
+    Humidity:    {{.Main.Humidity}}
+
+`
 
 	resp, err := http.Get(url)
 	if err != nil {
