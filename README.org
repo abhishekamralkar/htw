@@ -2,6 +2,12 @@
 
 A weather CLI written in GoLang to give you current weather in the given city. Consumes API from [[https://openweathermap.org/api][OpenWeather]].
 
+* OpenWeather API Key
+
+#+begin_src
+export OWM_API_KEY=097jhgjhgkjhgkjhgkjhgkhjgk
+#+end_src
+
 * HWT Usage
 
 #+begin_src
