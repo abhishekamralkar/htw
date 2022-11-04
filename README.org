@@ -1,3 +1,3 @@
 #+title: How's The Weather!
 
-A CLI `written in GoLang` to give you current weather in the given city. Consumes API from [[https://openweathermap.org/api][OpenWeather]].
+A weather CLI written in GoLang to give you current weather in the given city. Consumes API from [[https://openweathermap.org/api][OpenWeather]].
