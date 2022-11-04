@@ -5,10 +5,34 @@ A weather CLI written in GoLang to give you current weather in the given city. C
 * HWT Usage
 
 #+begin_src
-./howstheweather -h
-Usage of ./howstheweather:
+go run main.go -h                         
+Usage of /tmp/go-build1726196164/b001/exe/main:
   -city string
     	Enter the city name. (default "Pune")
   -units string
     	Supports Kelvin(standard), Celcius(metric), Fahrenheit(imperial) (default "kelvin")
+#+end_src
+
+* HWT Default Return
+
+#+begin_src
+go run main.go                            
+Current weather in Pune, IN:
+    Now:         293.53 
+    High:        294.15
+    Low:         294.15
+    Pressure:    1016
+    Humidity:    47
+#+end_src
+
+* HWT with flags
+
+#+begin_src
+go run main.go -city chicago -units metric
+Current weather in Chicago, US:
+    Now:         16.82 
+    High:        19.61
+    Low:         15.58
+    Pressure:    1013
+    Humidity:    82
 #+end_src
